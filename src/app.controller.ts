@@ -21,13 +21,14 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Post('upload')
-  @UseInterceptors(FileInterceptor('file'))
+  @Post('post-image')
+  @UseInterceptors(FileInterceptor('image'))
   uploadFile(@UploadedFile() file: Express.Multer.File, @Req() req: Request) {
+
     const filename = file.filename;
-    console.log(filename);
+
     const response = {
-      url: 'http://' + req.headers['host'] + '/' + filename,
+      url: 'http://' + req.headers['host'].slice(4) + '/back-remezovi/upload/' + filename,
     };
     return response;
   }
