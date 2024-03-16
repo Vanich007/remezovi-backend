@@ -21,6 +21,18 @@ export class PostEntity extends BaseEntity {
   @Column()
   author: number;
 
+  // @Column({ type: 'date', default: () => 'CURRENT_DATE' })
+  // dateField: Date;
+  // @CreateDateColumn()
+  // created_at: Date;
+  //
+  // @UpdateDateColumn({ name: 'updated_at' })
+  // updatedAt: Date;
+  //
+  // @DeleteDateColumn({ name: 'deleted_at' })
+  // deletedAt: Date;
+
+
   @ManyToOne(() => User, (user) => user.posts)
   user: User;
 }

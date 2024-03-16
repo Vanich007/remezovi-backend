@@ -1,0 +1,25 @@
+DELETE http://localhost:5000/posts/delete?id=1000 HTTP/1.1
+
+
+# GET http://localhost:5000/posts/post?id=5 HTTP/1.1
+
+# POST http://localhost:5000/users/add  HTTP/1.1
+# content-type: application/json
+
+# {
+#     "id": 7198731,
+#     "first_name": "Иван",
+#     "last_name": "Р.",
+#     "avatar": "https://sun9-48.userapi.com/s/v1/ig2/I08o5gwL6nCYKNJbWSDmbTZsKAuiGBxnct9F3lt29kpXFSxfUF6jEZ9RZp-I6WqHiaQQVF0pu2QlzZd_hM_XnqeY.jpg?size=200x200&quality=96&crop=675,222,756,756&ava=1",
+#     "avatar_base": null,
+#     "phone": "+7 *** *** ** 56"
+# }
+
+# POST http://localhost:5000/posts/add HTTP/1.1
+# content-type: application/json
+
+# {
+#     "text": "<p>123</p>",
+#     "title": "1",
+#     "author": 7198731
+# }

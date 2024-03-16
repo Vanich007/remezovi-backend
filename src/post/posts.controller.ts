@@ -1,4 +1,12 @@
-import { Body, Controller, Post, Get, Param } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  Get,
+  Patch,
+  Query,
+  Delete,
+} from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { PostEntity } from './post.entity';
 
@@ -10,8 +18,20 @@ export class PostsController {
   post(@Body() body): Promise<void> {
     return this.postsService.add(body);
   }
-  @Get('getpostbyid')
-  get(@Param() param): Promise<PostEntity> {
-    return this.postsService.getPostById(param);
+  @Delete('delete')
+  delete(@Query() { id }): Promise<void> {
+    return this.postsService.remove(id);
+  }
+  @Patch('patch')
+  patch(@Body() body): Promise<void> {
+    return this.postsService.patch(body);
+  }
+  @Get('post')
+  getPostBiId(@Query() { id }): Promise<PostEntity> {
+    return this.postsService.getPostById(id);
+  }
+  @Get('posts')
+  getPosts(@Query() { count, skip }): Promise<{ posts: PostEntity[] }> {
+    return this.postsService.getPosts(count, skip);
   }
 }

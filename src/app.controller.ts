@@ -24,11 +24,15 @@ export class AppController {
   @Post('post-image')
   @UseInterceptors(FileInterceptor('image'))
   uploadFile(@UploadedFile() file: Express.Multer.File, @Req() req: Request) {
-
+    console.log('req.headers', req.headers);
     const filename = file.filename;
 
     const response = {
-      url: 'http://' + req.headers['host'].slice(4) + '/back-remezovi/upload/' + filename,
+      url:
+        'http://' +
+        req.headers['host'].slice(4) +
+        '/back-remezovi/upload/' +
+        filename,
     };
     return response;
   }
