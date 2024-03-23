@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryColumn, OneToMany, JoinTable } from "typeorm";
+import { Entity, Column, PrimaryColumn, OneToMany } from 'typeorm';
 import { PostEntity } from '../post/post.entity';
 
 @Entity()

@@ -5,6 +5,7 @@ import { PostEntity } from './post.entity';
 import { CreatePostDto } from './dto/create-post.dto';
 import { PatchPostDto } from './dto/patch-post.dto';
 import { UsersService } from '../user/users.service';
+import { CategoriesService } from '../category/categories.service';
 
 @Injectable()
 export class PostsService {
@@ -12,6 +13,7 @@ export class PostsService {
     @InjectRepository(PostEntity)
     private postsRepository: Repository<PostEntity>,
     private readonly usersService: UsersService,
+    private readonly categoriesService: CategoriesService,
   ) {}
 
   findAll(): Promise<PostEntity[]> {
@@ -28,11 +30,15 @@ export class PostsService {
   async add(createPostDto: CreatePostDto): Promise<void> {
     if (!createPostDto.author) return;
     const user = await this.usersService.findOne(createPostDto.author);
+    const category = await this.categoriesService.findOne(
+      createPostDto.category,
+    );
     const post = new PostEntity();
     post.text = createPostDto.text;
     post.title = createPostDto.title;
     post.author = createPostDto.author;
     post.user = user;
+    post.category = category;
     await this.postsRepository.save(post);
   }
   async patch(patchPostDto: PatchPostDto): Promise<any> {
@@ -46,17 +52,17 @@ export class PostsService {
   async getPostById(postId: number): Promise<PostEntity> {
     const post = await PostEntity.findOne({
       where: { id: postId },
-      relations: ['user'],
+      relations: ['user', 'category'],
     });
     return post;
   }
   async getPosts(
     take: number,
-    skip: number
+    skip: number,
   ): Promise<{ posts: PostEntity[]; count: number }> {
     const posts = await PostEntity.find({
       // where: { id: postId },
-      relations: ['user'],
+      relations: ['user', 'category'],
       take,
       skip,
       order: { id: 'ASC' },

@@ -6,6 +6,7 @@ import {
   BaseEntity,
 } from 'typeorm';
 import { User } from '../user/user.entity';
+import { Category } from '../category/category.entity';
 
 @Entity()
 export class PostEntity extends BaseEntity {
@@ -21,18 +22,8 @@ export class PostEntity extends BaseEntity {
   @Column()
   author: number;
 
-  // @Column({ type: 'date', default: () => 'CURRENT_DATE' })
-  // dateField: Date;
-  // @CreateDateColumn()
-  // created_at: Date;
-  //
-  // @UpdateDateColumn({ name: 'updated_at' })
-  // updatedAt: Date;
-  //
-  // @DeleteDateColumn({ name: 'deleted_at' })
-  // deletedAt: Date;
-
-
   @ManyToOne(() => User, (user) => user.posts)
   user: User;
+  @ManyToOne(() => Category, (category) => category.posts)
+  category: Category;
 }

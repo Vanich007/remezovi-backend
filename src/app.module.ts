@@ -10,6 +10,7 @@ import { PostEntity } from './post/post.entity';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './user/users.module';
 import { PostsModule } from './post/posts.module';
+import { CategoriesModule } from "./category/categories.module";
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { PostsModule } from './post/posts.module';
     }),
     UsersModule,
     PostsModule,
+    CategoriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
