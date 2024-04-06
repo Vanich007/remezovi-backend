@@ -16,7 +16,7 @@ export class PostEntity extends BaseEntity {
   @Column()
   title: string;
 
-  @Column()
+  @Column('varchar', { length: 20000 })
   text: string;
 
   @Column()

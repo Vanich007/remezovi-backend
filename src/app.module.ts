@@ -18,7 +18,7 @@ import { CategoriesModule } from "./category/categories.module";
     MulterModule.register({
       storage: diskStorage({
         destination: function (req, file, cb) {
-          cb(null, './upload');
+          cb(null, '../../upload');
         },
         filename: function (req, file, cb) {
           cb(null, Date.now() + '-' + file.originalname);

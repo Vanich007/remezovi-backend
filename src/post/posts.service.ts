@@ -59,9 +59,11 @@ export class PostsService {
   async getPosts(
     take: number,
     skip: number,
+    category: number,
   ): Promise<{ posts: PostEntity[]; count: number }> {
+    const cat = await this.categoriesService.findOne(category);
     const posts = await PostEntity.find({
-      // where: { id: postId },
+      where: category ? { category: cat } : undefined,
       relations: ['user', 'category'],
       take,
       skip,

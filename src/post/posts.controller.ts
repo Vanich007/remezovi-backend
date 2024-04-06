@@ -31,7 +31,7 @@ export class PostsController {
     return this.postsService.getPostById(id);
   }
   @Get('posts')
-  getPosts(@Query() { count, skip }): Promise<{ posts: PostEntity[] }> {
-    return this.postsService.getPosts(count, skip);
+  getPosts(@Query() { count, skip, category }): Promise<{ posts: PostEntity[] }> {
+    return this.postsService.getPosts(count, skip, category);
   }
 }
